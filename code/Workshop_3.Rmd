@@ -1,0 +1,29 @@
+---
+title: "Workshop 3"
+output: html_notebook
+---
+#Workshop 3 - Reproducible research in marine science
+```{r library}
+library(usethis)
+```
+
+```{r Introducing myself to Git}
+use_git_config(user.name = "Celine Egsaeter", user.email = "Celinemoeg@gmail.com")
+```
+
+
+```{r default main as intitial branch}
+usethis::git_default_branch_configure("main")
+```
+
+```{r}
+usethis::
+```
+
+
+```{r Check it is talking}
+credentials::git_credential_ask()
+usethis::git_sitrep()
+```
+
+

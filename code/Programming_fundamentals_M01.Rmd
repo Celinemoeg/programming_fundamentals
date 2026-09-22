@@ -1,0 +1,117 @@
+---
+title: "Programming fundamentals"
+output: html_notebook
+---
+
+```{r Library}
+library(dplyr)
+library(ggplot2)
+library(tidyverse)
+```
+
+#1.6 Data Types
+
+##Exercise: Checking Structures
+```{r}
+# Assign variable values
+site_name <- "Heron_Island"
+transect_depth_m <- 12.5
+bleaching_present <- TRUE
+```
+
+```{r}
+# Check using function class()
+class(site_name)
+class(transect_depth_m)
+class(bleaching_present)
+```
+```{r}
+# Check using function str()
+str(site_name)
+str(transect_depth_m)
+str(bleaching_present)
+```
+##Exercise: rounding numbers
+```{r}
+# Tracking the age of an old-growth Porites coral colony
+years_old <- 25.765
+```
+
+```{r}
+# Clean this up for our summary report
+round(years_old, 2)
+```
+
+##Manipulating outputs
+
+```{r}
+# Make variables
+years_old <- 25.765
+rounded_age <- round(years_old, 2)
+
+# Combine text and data variables
+paste("Average colony age is", rounded_age, "years old")
+```
+Task: Modify the arguments inside the round() function above so that the mathematical truncation matches the expected field report text exactly.
+
+```{r}
+rounded_age <- round(years_old, 1)
+
+# Combine text and data variables
+paste("Average colony age is", rounded_age, "years old")
+```
+
+#1.7 Data structures
+
+
+```{r}
+fish_lengths <- c(124, 152, 98, 221, 146)
+coral_spp <- c("Porites", "Acropora", "Montastrea")
+```
+
+```{r}
+notes <- c("Acropora", 27.5, TRUE)
+```
+
+```{r}
+notes <- list("Acropora", 27.5, TRUE)
+notes
+```
+The great thing about lists and vectors is that you can retrieve individual elements using double square brackets to reference their index.
+```{r}
+notes[[1]]
+```
+
+## Data frames and tibbles
+
+```{r creating df}
+my_dataframe <- data.frame(no=c(1,2,3),c("Plectropomus","Scarus","Pomacentrus"),c(TRUE,FALSE,TRUE))
+my_dataframe
+str (my_dataframe)
+```
+
+```{r}
+my_dataframe$no = as.factor(my_dataframe$no)
+str (my_dataframe)
+```
+A factor is a categorical type, so here we are telling R that column 1 is actually storing a category (a group membership, say a numeric code for which team each of these people are in) rather than a real continuous number. 
+
+#1.8 R Projects and workspace architecture
+
+```{r}
+
+```
+
+# MB5370_Module_1_Coding/
+│
+├── MB5370_Module_1_Coding.Rproj
+├── data/       <- For raw, unedited data files (CSVs, shapes, etc.)
+├── code/    <- For dirty/heavy data manipulation code
+├── output/    <- For processed tables, figures, and saved objects
+└── docs/       <- For your rendered write-ups and final documents
+
+
+#1.9 Quarto for Reporting
+
+While traditional R scripts (.R) are excellent for heavy, multi-step computation, they are poorly suited for sharing results with managers, stakeholders, or stakeholders who don't write code. Historically, scientists used R Markdown (.Rmd). Today, we pivot to Quarto (.qmd), the open-source, next-generation standard for scientific and technical publishing.
+Quarto uses literate programming. It weaves narrative prose (Markdown syntax), executable code blocks (in R or even in other programming languages), and high-quality rendering options into a single document.
