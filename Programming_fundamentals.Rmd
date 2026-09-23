@@ -431,3 +431,4 @@ ggplot(data = penguins, mapping = aes(x = species, y = flipper_length_mm, fill =
 Did it work? yes it worked, compilot had a few creative ideas of its own, i did leave some of my props open for interretation, i could have been more precis, but i think it came out good. 
 
 
+
