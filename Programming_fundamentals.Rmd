@@ -1,13 +1,9 @@
 ---
 title: "Programming fundamentals"
-output:
-  html_document:
-    df_print: paged
+output: html_notebook
 ---
 
 ```{r Library}
-library(dplyr)
-library(ggplot2)
 library(tidyverse)
 ```
 
@@ -431,4 +427,50 @@ ggplot(data = penguins, mapping = aes(x = species, y = flipper_length_mm, fill =
 Did it work? yes it worked, compilot had a few creative ideas of its own, i did leave some of my props open for interretation, i could have been more precis, but i think it came out good. 
 
 
+#4.3 Conditional Logic - filtering your data
+##Base R: if and else
 
+```{r}
+# Simple Example: Checking Sea Surface Temperature (SST)
+sst <- 30.2
+
+if (sst > 29.5) {
+  print("Warning: Marine heatwave threshold exceeded!")
+} else {
+  print("SST remains within baseline parameters.")
+}
+
+```
+
+##Tidyverse Alternative: Vectorised Conditionals (dplyr)
+
+
+```{r if_else()}
+# Load tidyverse (if not already loaded)
+library(tidyverse)
+
+# Sample coral data
+coral_monitoring <- tibble(
+  site = c("Site_A", "Site_B", "Site_C"),
+  depth_m = c(12, 35, 8)
+)
+
+# Classify depth using if_else
+coral_monitoring <- coral_monitoring %>% 
+  mutate(zone = if_else(depth_m > 30, "Deep Reef", "Shallow Reef"))
+
+```
+
+
+```{r case_when()}
+coral_monitoring <- coral_monitoring %>% 
+  mutate(reef_category = case_when(
+    depth_m < 10  ~ "Lagoon / Flats",
+    depth_m <= 30 ~ "Crest / Slope",
+    depth_m > 30  ~ "Mesophotic / Deep",
+    TRUE          ~ "Unclassified" # Catch-all remainder
+  ))
+
+```
+
+##Task:  Environmental Stress Classification
